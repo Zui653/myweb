@@ -2,40 +2,110 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Web của Cường</title>
+<title>Lộc Lá</title>
 
 <style>
+
 body{
-background:black;
-color:white;
-text-align:center;
+margin:0;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+background:url("nen.jpg");
+background-size:cover;
+background-position:center;
+overflow:hidden;
 font-family:Arial;
 }
 
 h1{
-color:cyan;
+color:gold;
 font-size:50px;
+text-shadow:0 0 15px yellow;
+margin-bottom:20px;
 }
 
-button{
-padding:10px;
-font-size:20px;
+#hongbao{
+width:220px;
+cursor:pointer;
+transition:0.2s;
 }
+
+#hongbao:hover{
+transform:scale(1.1);
+}
+
+.item{
+position:absolute;
+width:60px;
+pointer-events:none;
+transition:top 2s linear,left 0.8s;
+}
+
 </style>
-
 </head>
 
 <body>
 
-<h1>Xin chào</h1>
-<p>Đây là web đầu tiên của tui</p>
+<h1>Lộc Lá</h1>
 
-<button onclick="hello()">Bấm thử</button>
+<img id="hongbao" src="hongbao.png">
 
 <script>
-function hello(){
-alert("Hello bro!");
+
+let hongbao=document.getElementById("hongbao")
+
+let items=[
+"hongbao_nho.png",
+"coin.png",
+"vang.png"
+]
+
+hongbao.onclick=function(){
+
+for(let i=0;i<30;i++){
+
+spawn()
+
 }
+
+}
+
+function spawn(){
+
+let img=document.createElement("img")
+
+img.src=items[Math.floor(Math.random()*items.length)]
+
+img.className="item"
+
+let centerX=window.innerWidth/2
+let centerY=window.innerHeight/2
+
+img.style.left=centerX+"px"
+img.style.top=centerY+"px"
+
+document.body.appendChild(img)
+
+let angle=Math.random()*Math.PI*2
+let distance=200+Math.random()*300
+
+let x=centerX+Math.cos(angle)*distance
+let y=centerY+Math.sin(angle)*distance
+
+setTimeout(()=>{
+img.style.left=x+"px"
+img.style.top=y+"px"
+},50)
+
+setTimeout(()=>{
+img.style.top=window.innerHeight-80+"px"
+},800)
+
+}
+
 </script>
 
 </body>
