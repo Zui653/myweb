@@ -6,30 +6,68 @@
 <title>Lộc Lá</title>
 
 <style>
+
 body{
 margin:0;
 overflow:hidden;
 background:url("nen.jpg") no-repeat center center/cover;
 touch-action: manipulation;
+font-family:Arial;
 }
+
+/* chữ Lộc Lá */
+
+.title{
+position:absolute;
+top:30%;
+left:50%;
+transform:translate(-50%,-50%);
+font-size:60px;
+color:gold;
+text-shadow:
+0 0 10px gold,
+0 0 20px gold,
+0 0 40px orange,
+0 0 60px yellow;
+animation:glow 1.5s infinite alternate;
+}
+
+@keyframes glow{
+from{
+text-shadow:
+0 0 10px gold,
+0 0 20px gold,
+0 0 40px orange;
+}
+to{
+text-shadow:
+0 0 20px yellow,
+0 0 40px orange,
+0 0 80px gold;
+}
+}
+
+/* bao lì xì */
 
 #hongbao{
 position:absolute;
 left:50%;
-top:50%;
+top:55%;
 transform:translate(-50%,-50%);
-width:120px;
+width:140px;
 cursor:pointer;
 }
+
+/* hiệu ứng */
 
 .item{
 position:absolute;
 width:40px;
 pointer-events:none;
-animation:no 1s linear forwards;
+animation:boom 1s linear forwards;
 }
 
-@keyframes no{
+@keyframes boom{
 0%{
 transform:scale(0.2);
 opacity:1;
@@ -40,10 +78,13 @@ transform:translate(var(--x),var(--y)) scale(1);
 opacity:0;
 }
 }
+
 </style>
 </head>
 
 <body>
+
+<h1 class="title">Lộc Lá</h1>
 
 <img src="hongbao.png" id="hongbao">
 
@@ -59,7 +100,7 @@ const hongbao=document.getElementById("hongbao")
 
 hongbao.onclick=function(){
 
-for(let i=0;i<20;i++){
+for(let i=0;i<25;i++){
 
 const img=document.createElement("img")
 
@@ -67,18 +108,20 @@ img.src=images[Math.floor(Math.random()*images.length)]
 
 img.className="item"
 
-let x=(Math.random()-0.5)*600
-let y=(Math.random()-0.5)*600
+let x=(Math.random()-0.5)*700
+let y=(Math.random()-0.5)*700
 
 img.style.setProperty("--x",x+"px")
 img.style.setProperty("--y",y+"px")
 
 img.style.left="50%"
-img.style.top="50%"
+img.style.top="55%"
 
 document.body.appendChild(img)
 
-setTimeout(()=>{img.remove()},1000)
+setTimeout(()=>{
+img.remove()
+},1000)
 
 }
 
